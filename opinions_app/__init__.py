@@ -3,11 +3,12 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import event
 from sqlalchemy.engine import Engine
+from settings import Config
 
 import sqlite3
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+app.config.from_object(Config)
 app.config['SECRET_KEY'] = 'any-secret-string'
 
 db = SQLAlchemy(app)
